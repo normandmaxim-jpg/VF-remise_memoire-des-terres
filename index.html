@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css">
+    <title>Mémoire des terres</title>
+    <link rel="icon" type="image/png" href="images/Icone site web-V2.png">
+    
+  </head>
+
+  <body>
+
+    <!-- La barre de progression dans le haut de la page principale     -->
+
+    <div id="progress-bar">
+  <div id="progress-fill"></div>
+</div>
+
+<!-- Code pour le titre cliquable de la première page qui s'affiche -->
+
+<div id="splash">
+  <h1 id="titre-cliquable">Mémoire des terres</h1>
+</div>
+
+  <!-- Titre dans le haut de la page principale qui va disparaitre -->
+
+<h1 id="titre-principal" style="text-align: center; padding: 10px 0; margin: 0;">Voici des lieux où des terres agricoles ont disparu.</h1>
+&nbsp
+
+
+  <!-- Carte principale du site web (celle en noir et blanc) -->
+
+  <div id="map-wrapper">
+    <img id="carte" src="images/arriereplan/carteactuellevicto2026v3.jpg" alt="Carte de Victoriaville">
+
+  <!-- Bouton en haut de la page pour ancienne carte et perte terre agricole -->  
+    
+    <div id="carte-controls">
+    <button id="btn-toggle-carte" class="ctrl-btn">Carte ancienne</button>
+    <button id="btn-toggle-zones" class="ctrl-btn">Pertes agricoles</button>
+    <button id="btn-toggle-origine" class="ctrl-btn">Carte 1845</button>
+  </div>
+
+
+<!-- Zone rouge qui montre les pertes des terres agricoles   -->
+
+  <img id="zones-agricoles" 
+     src="images/arriereplan/zoneagricoleseulv2.png" 
+     alt="Pertes agricoles"
+     class="hidden">
+    
+<!-- vieille carte 1845 du Canton d'Artbaska qui va se mettre par dessus les autres cartes--> 
+    
+    <img id="carte-origine" 
+     src="images/arriereplan/carte1845victo.png" 
+     alt="Carte d'origine du territoire"
+     class="hidden">
+
+
+
+ <!-- Section pour les points cliquables sur le site web -->
+
+       <button class="poi" style="left: 52%; top: 70%;" data-id="1">
+      <span class="poi-label">1</span>
+    </button>
+
+    <button class="poi" style="left: 50%; top: 55%;" data-id="2">
+      <span class="poi-label">2</span>
+    </button>
+
+      <button class="poi" style="left: 70%; top: 70%;" data-id="3">
+      <span class="poi-label">3</span>
+    </button>
+
+      <button class="poi" style="left: 47%; top: 60%;" data-id="4">
+      <span class="poi-label">4</span>
+
+    </button>
+
+      <button class="poi" style="left: 47%; top: 40%;" data-id="5">
+      <span class="poi-label">5</span>
+    </button>
+
+     <button class="poi" style="left: 44%; top: 30%;" data-id="6">
+      <span class="poi-label">6</span>
+    </button>
+
+      <button class="poi" style="left: 55%; top: 18%;" data-id="7">
+      <span class="poi-label">7</span>
+    </button>
+
+    <button class="poi" style="left: 32%; top: 14%;" data-id="8">
+      <span class="poi-label">8</span>
+    </button>
+
+  </div>
+
+
+
+  <!-- Les cartels d'archives -->
+
+  <div id="overlay" class="hidden">
+    <div id="archive-card">
+      <button id="close-btn">✕</button>
+      <img id="archive-img" src="" alt="">
+      <div id="archive-body">
+        <h2 id="archive-title"></h2>
+        <p id="archive-year"></p>
+        <p id="archive-text"></p>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- Bouton info en bas à droite -->
+<button id="btn-info">
+  <img src="images/icone/iconefondvert.png" alt="Info">
+</button>
+
+
+
+<!-- Overlay section info -->
+
+<div id="overlay-info" class="hidden">
+  <div id="info-card">
+    <button id="close-info">✕</button>
+    <h2 id="info-titre">À propos du projet</h2>
+    <div id="info-texte">
+  <p>Ce projet est né d’un livret imprimé portant sur la perte des terres agricoles <br> 
+     à Victoriaville. Il prend appui sur mon histoire familiale, puisque mes arrière- <br>
+     grands-parents ont eux-mêmes été déplacés pour laisser place à la construction d’usines et de quartiers résidentiels.</p>
+  <p>Aujourd’hui, ce projet prend une nouvelle forme à travers un site web. Cette version numérique permet d’explorer plus directement le territoire, en mettant l’accent <br>
+     sur l’emplacement des archives, les transformations du paysage et la disparition progressive des terres agricoles au profit de l’expansion urbaine.</p>
+  <p>À travers des cartes, des comparatifs visuels et des souvenirs, le site cherche <br>
+     à rendre visible ce qu’on oublie souvent : sous plusieurs maisons, routes et usines d’aujourd’hui se trouvent d’anciennes terres agricoles. Le projet prend Victoriaville comme point de départ, mais il ouvre aussi sur une réalité plus large, celle de <br>
+      la perte de terres cultivables partout au Québec.</p>
+  <p>Ce site n’est pas un reproche, mais une invitation à regarder autrement le territoire <br>
+     et à réfléchir à ce que l’on choisit de faire disparaître.</p>
+</div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+  </body>
+</html>
