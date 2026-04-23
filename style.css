@@ -1,0 +1,396 @@
+body 
+{
+  background-color: black;
+  font-family : "Archivo", sans-serif;
+  width: 100vw;
+  height: 100vh;
+}
+
+@font-face {
+    font-family: "Archivo";
+    src: url("typographies/Archivo/static/Archivo-Regular.ttf") format("truetype");
+}
+
+/* Code pour la page d'accueil */
+#splash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* par-dessus tout le reste */
+}
+
+#titre-cliquable {
+  color: #fff;
+  font-size: 3rem;
+  cursor: pointer;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+#titre-cliquable:hover {
+  filter: blur(3px);
+  opacity: 0.7;
+}
+
+
+/* Barre de progression */
+
+#progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 99999;
+}
+
+#progress-fill {
+  height: 100%;
+  width: 0%;
+  background-color: #00cc44;
+  transition: width 0.1s ease;
+}
+
+
+/* Pour la page principale avec le scroll */
+
+p {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+img {
+max-width: 100%;
+  height: auto;
+}
+
+h1 {
+  color: white;
+}
+
+
+
+/* La carte prend toute la fenêtre */
+
+#map-wrapper {
+  position: relative;   /* indispensable pour positionner les points par-dessus */
+  width: 100%;
+  height: 100%;
+}
+
+#carte {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;    /* l'image remplit tout l'espace sans se déformer */
+  display: block;
+  z-index: 1;
+}
+
+
+/* --- Carte d'origine victo 1845 --- */
+
+#carte-origine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  opacity: 0.9;
+  transition: opacity 0.4s ease;
+  z-index: 2;
+}
+
+#carte-origine.hidden {
+  display: none !important;
+}
+
+/* --- Boutons de contrôle en haut à droite --- */
+#carte-controls {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 5;
+}
+
+.ctrl-btn {
+  background: rgba(0, 0, 0, 0.65);
+  color: white;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-family: "Archivo", sans-serif;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+
+.ctrl-btn:hover {
+  background: rgba(0, 0, 0, 0.85);
+  border-color: rgba(98, 210, 117, 0.6);
+}
+
+.ctrl-btn.actif {
+  background: rgb(78, 100, 78);
+  border-color: white;
+}
+
+/* --- Zones de perte agricole --- */
+
+#zones-agricoles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  opacity: 0.75;
+  transition: opacity 0.4s ease;
+  z-index: 3;
+}
+
+#zones-agricoles.hidden {
+  display: none !important;
+}
+
+@keyframes pulseZone {
+  0%, 100% { opacity: 0.6; }
+  50%       { opacity: 1; }
+}
+
+
+
+/* --- Points cliquables --- */
+.poi {
+  position: absolute;   /* positionné par rapport à #map-wrapper */
+  transform: translate(-50%, -50%);  /* centré sur le point exact */
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #349211;
+  border: 2.5px solid white;
+  cursor: pointer;
+  transition: transform 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+}
+
+.poi:hover {
+  transform: translate(-50%, -50%) scale(1.25);
+}
+
+.poi-label {
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+/* --- Fond semi-transparent --- */
+#overlay {
+  position: fixed;
+  inset: 0;          /* couvre tout l'écran */
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+#overlay.hidden {
+  display: none;
+}
+
+/* --- Carte archive --- */
+#archive-card {
+  background: white;
+  border-radius: 12px;
+  width: min(500px, 92vw);
+  overflow: hidden;
+  position: relative;
+  animation: fadeUp 0.2s ease;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+#archive-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+#archive-body {
+  padding: 1rem 1.25rem 1.5rem;
+}
+
+
+#archive-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 10px 0;
+}
+
+#archive-year {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 10px;
+  padding-left: 0; 
+  padding-right: 0;
+}
+
+#archive-text {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.65;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+#close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.4);
+  color: white;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#close-btn:hover {
+  background: rgba(0,0,0,0.7);
+}
+
+
+
+
+/* --- Bouton info --- */
+
+#btn-info {
+  position: fixed;
+  bottom: 20px;
+  right: 48px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: none;
+  cursor: pointer;
+  z-index: 200;
+  padding: 0;
+  transition: transform 0.15s;
+}
+
+#btn-info:hover {
+  transform: scale(1.1);
+}
+
+#btn-info img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+
+
+
+
+/* --- Overlay info --- */
+
+#overlay-info {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 300;
+}
+
+#overlay-info.hidden {
+  display: none;
+}
+
+/* --- Carte info --- */
+
+#info-card {
+  background: rgb(237, 236, 236);
+  border-radius: 12px;
+  width: min(520px, 92vw);
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  padding: 2rem;
+  animation: fadeUp 0.2s ease;
+}
+
+#info-titre {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 1rem 0;
+}
+
+#info-texte {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.7;
+  padding: 0;
+}
+
+#info-texte p {
+  margin-bottom: 1rem;
+  padding-left: 0;  
+  padding-right: 0; 
+}
+
+#info-texte p:last-child {
+  margin-bottom: 0;
+}
+
+#close-info {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.4);
+  color: white;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#close-info:hover {
+  background: rgba(0,0,0,0.7);
+}
